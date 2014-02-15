@@ -5,9 +5,10 @@ using System.Collections.Generic;
 public class LightController : MonoBehaviour {
 
     public int numberOfRooms;
-    public List<bool> lights = new List<bool>();
+    public List<bool> lights;
 	// Use this for initialization
 	void Start () {
+        lights = new List<bool>();
         for (int i = 0; i < numberOfRooms; i++)
         {
             lights.Add(true);
