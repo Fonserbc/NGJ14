@@ -38,7 +38,7 @@ public class EnemyFSM : MonoBehaviour {
         switch (enemyState)
         {
             case "Blinded":
-
+                    Vector3 switchPos = ;
                 break;
 
             case "Patrol":
