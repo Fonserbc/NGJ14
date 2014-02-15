@@ -12,6 +12,13 @@ public class CameraPositionAsObject : MonoBehaviour {
 	void Start () {
 		if (followObject)
 			SetFollow (followObject);
+
+		float ratio = (float)Screen.height / (float)Screen.width;
+		Debug.Log (ratio);
+		if (ratio < (9.0f / 16.0f))
+			Camera.main.orthographicSize = (ratio * 16.0f) / 2.0f;
+		else
+			Camera.main.orthographicSize = 9.0f / 2.0f;
 	}
 	
 	// Update is called once per frame
