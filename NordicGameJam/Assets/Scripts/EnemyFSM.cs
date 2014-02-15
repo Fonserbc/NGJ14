@@ -17,6 +17,7 @@ public class EnemyFSM : MonoBehaviour {
     void Start()
     {
         idleCounter = 0;
+        enemyState = "Patrol";
     }
 
 	// Update is called once per frame
