@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿/*using UnityEngine;
 using System.Collections;
 
 public class NeoCharacterController : MonoBehaviour {
@@ -6,24 +6,27 @@ public class NeoCharacterController : MonoBehaviour {
     Vector3 worldSpaceHitPoint;
     Ray ray;
     RaycastHit hitInfo;
-    private Plane playerPlane;
+    GameObject obj = (GameObject)GameObject.Find("IntersectPlane");
+    //Collider coll;
+    float hitDist;
 
 	// Use this for initialization
 	void Start () {
-	
+        //coll = obj.collider;
 	}
 	
 	// Update is called once per frame
 	void Update () {
         //#if UNITY_EDITOR
         if (Input.GetButtonDown ("Fire1")) {
-            playerPlane = new Plane(Vector3.up, transform.position);
+            
             Debug.Log("FIRE");
 			// Construct a ray from the current mouse coordinates
 			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-            if (playerPlane.Raycast(ray, out hitInfo))
+            
+            if (coll.Raycast(ray,out hitInfo, hitDist))
             {
-                worldSpaceHitPoint = ray.GetPoint(hitInfo);
+                worldSpaceHitPoint = ray.GetPoint(hitDist);
             }
 		}
         //#endif
@@ -41,6 +44,6 @@ public class NeoCharacterController : MonoBehaviour {
         }*/
         //#endif
 
-        GameObject.Find("Neo").GetComponent<MoveNeo>().UpdateTarget(worldSpaceHitPoint.y);
+        /*GameObject.Find("Neo").GetComponent<MoveNeo>().UpdateTarget(worldSpaceHitPoint.y);
         }
-}
+}*/
