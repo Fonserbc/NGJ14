@@ -9,7 +9,7 @@ public class LightCount : MonoBehaviour {
 	void Start () {
         tonsOfLights = GameObject.GetComponentInChildren<Transform>();
         for (int i = 0; i < tonsOfLights.length; i++)
-            GameObject.Find("Manager").GetComponent<GlobalVariables>.switchPositions.Add(tonsOfLights[i].position);
+            GameObject.Find("Manager").GetComponent<GlobalVariables>().switchPositions.Add(tonsOfLights[i].position);
 	}
 	
 }
