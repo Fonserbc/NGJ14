@@ -6,6 +6,8 @@ public class StartButtons : MonoBehaviour {
 	public GameObject camPos;
 	public GameObject networkObject;
 
+	private bool activated = false;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -35,12 +37,10 @@ public class StartButtons : MonoBehaviour {
 		}
 	}
 
-	void OnMouseDown() {
-		Activate ();
-	}
-
 	void Activate() {
+		if (activated) return;
 		Camera.main.SendMessage("SetFollow", camPos);
 		GameObject.Instantiate(networkObject, transform.position, transform.rotation);
+		activated = true;
 	}
 }

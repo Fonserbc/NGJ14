@@ -5,6 +5,9 @@ public class ClientSetup : MonoBehaviour {
 
 	TextMesh text;
 
+	bool connected = false;
+	public GameObject networkObject;
+
 	void Awake() {
 		MasterServer.RequestHostList ("MorphneoGame");
 	}
@@ -13,23 +16,42 @@ public class ClientSetup : MonoBehaviour {
 	void Start () {
 		Debug.Log ("Client");
 
-		text = GameObject.FindGameObjectWithTag ("clientInfo").GetComponent<TextMesh> ();
+		text = GameObject.Find ("ClientInfoText").GetComponent<TextMesh> ();
 
 		DontDestroyOnLoad (gameObject);
-
-		//SetUpClient ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		HostData[] hosts = MasterServer.PollHostList ();
+		if (!connected) {
+			HostData[] hosts = MasterServer.PollHostList ();
 
-		text.text = "Hosts: "+hosts.Length;
+			text.text = ((hosts.Length == 0) ? "No hosts found" : "Found host!");
+
+			if (hosts.Length == 0) {
+				MasterServer.RequestHostList ("MorphneoGame");
+			} else {
+				hosts[0].useNat = true;
+				NetworkConnectionError err = Network.Connect (hosts [0]);
+				Debug.Log(err);
+
+				connected = true;
+			}
+		}
 	}
 
-	void SetUpClient() {
-
+	void InstantiateNetworkObjectAndAdvance() {
+		NetworkCommunication network = ((GameObject) GameObject.Instantiate (networkObject, new Vector3(), new Quaternion())).GetComponent<NetworkCommunication>();
+		network.AdvanceLevel ();
 	}
 
+	void OnConnectedToServer() {
+		Debug.Log ("Connected to server");
+		
+		InstantiateNetworkObjectAndAdvance();
+	}
 
+	void OnFailedToConnect() {
+		Debug.Log ("Failed to connect to server");
+	}
 }
