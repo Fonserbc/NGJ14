@@ -20,10 +20,27 @@ public class StartButtons : MonoBehaviour {
 				Vector2 touchPos = new Vector2(wp.x, wp.y);
 				if (collider2D == Physics2D.OverlapPoint(touchPos))
 				{
-					Camera.main.SendMessage("SetFollow", camPos);
-					GameObject.Instantiate(networkObject, transform.position, transform.rotation);
+					Activate();
 				}
 			}
 		}
+
+		if (Input.GetMouseButtonDown (0)) {
+			Vector3 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			Vector2 touchPos = new Vector2(wp.x, wp.y);
+			if (collider2D == Physics2D.OverlapPoint(touchPos))
+			{
+				Activate();
+			}	
+		}
+	}
+
+	void OnMouseDown() {
+		Activate ();
+	}
+
+	void Activate() {
+		Camera.main.SendMessage("SetFollow", camPos);
+		GameObject.Instantiate(networkObject, transform.position, transform.rotation);
 	}
 }
