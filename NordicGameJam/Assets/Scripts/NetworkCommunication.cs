@@ -15,9 +15,12 @@ public class NetworkCommunication : MonoBehaviour {
 
 	private PhotonView photonView;
 
+	NeoLogicController neo;
+	MorpheosLogicController morph;
+
 	void OnLevelWasLoaded() {
-		rightButton = GameObject.Find ("ButtonRight").GetComponent<ButtonSyncTest>();
-		leftButton = GameObject.Find ("ButtonLeft").GetComponent<ButtonSyncTest>();
+		neo = GameObject.Find ("Manager").GetComponent<NeoLogicController>();
+		morph = GameObject.Find ("Manager").GetComponent<MorpheosLogicController>();
 	}
 
 	// Use this for initialization
@@ -41,9 +44,9 @@ public class NetworkCommunication : MonoBehaviour {
 	[RPC]
 	void StartLevel (int i) {
 		if (!PhotonNetwork.isMasterClient) {
-			Debug.Log("StartingLevel "+i+", I'm client");
+			Debug.Log("StartingLevel "+(i+1)+", I'm client");
 
-			Application.LoadLevel(i);
+			Application.LoadLevel(i+1);
 			/*ImReady();
 
 			funcToCall = Application.LoadLevel;
@@ -80,6 +83,8 @@ public class NetworkCommunication : MonoBehaviour {
 		return false;
 	}
 
+	// Information senders
+
 	public void ActivateButton (int id) {
 		photonView.RPC ("ActivateButtonRPC", PhotonTargets.All, id);
 	}
@@ -90,7 +95,14 @@ public class NetworkCommunication : MonoBehaviour {
 		else rightButton.SwitchColor ();
 	}
 
-	void OnPhotonSerialize() {
+	public void SendNeoPosition (Vector3 pos) {
+		photonView.RPC ("SendNeoPositionRPC", PhotonTargets.Others, pos);
+	}
 
+	[RPC]
+	void SendNeoPositionRPC (Vector3 pos) {
+		if (!PhotonNetwork.isMasterClient) {
+			morph.SetNeoPosition(pos);
+		}
 	}
 }

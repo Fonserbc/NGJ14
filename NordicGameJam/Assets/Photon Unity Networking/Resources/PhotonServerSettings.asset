@@ -24,4 +24,5 @@ MonoBehaviour:
   - HeReady
   - ActivateButtonRPC
   - AdvanceLevel
+  - SendNeoPositionRPC
   DisableAutoOpenWizard: 0
