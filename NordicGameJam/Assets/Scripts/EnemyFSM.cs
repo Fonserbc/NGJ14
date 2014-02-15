@@ -38,7 +38,7 @@ public class EnemyFSM : MonoBehaviour {
         switch (enemyState)
         {
             case "Blinded":
-                Vector3 switchPos = GameObject.Find("Manager").GetComponent<GlobalVariables>().switchPositions[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom];
+                //Vector3 switchPos = GameObject.Find("Manager").GetComponent<GlobalVariables>().switchPositions[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom];
                 break;
 
             case "Patrol":
