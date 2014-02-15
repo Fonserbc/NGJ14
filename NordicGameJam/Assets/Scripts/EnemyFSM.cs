@@ -22,19 +22,20 @@ public class EnemyFSM : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(enemyState);
         if (enemyState != "Blinded")
         {
             distToPlayer = Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
-            if (distToPlayer > proximity)
+            if (distToPlayer < proximity)
             {
                 enemyState = "Discover";
             }
         }
         
-        if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
+        /*if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
         {
             enemyState = "Blinded";
-        }
+        }*/
 
         switch (enemyState)
         {
@@ -58,10 +59,10 @@ public class EnemyFSM : MonoBehaviour {
                 }
                 if (transform.position.x > patrolTo && patrolLeft)
                 {
-                    transform.Translate(transform.right * enemySpeed * Time.deltaTime);
+                    transform.Translate(-transform.right * enemySpeed * Time.deltaTime);
                     //Play walk left animation
                 }
-                if (transform.position.x < patrolFrom && patrolLeft)
+                if (transform.position.x < patrolTo && patrolLeft)
                 {
                     patrolRight = true;
                     patrolLeft = false;
@@ -90,4 +91,9 @@ public class EnemyFSM : MonoBehaviour {
                 break;
         }
 	}
+
+    void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(new Vector3(patrolTo, transform.position.y, 0), new Vector3(patrolFrom, transform.position.y, 0));
+    }
 }

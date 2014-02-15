@@ -3,18 +3,9 @@ using System.Collections;
 
 public class NeoLazer : MonoBehaviour {
 
-    public int lazerNumNeo;
-    private bool on = true;
-
-    public void receiveLazerTrigger()
+    void OnTriggerEnter(Collider other)
     {
-        if (on)
-        {
-            on = false;
-        }
-        else
-        {
-            on = true;
-        }
+        //run GameOver
+
     }
 }
