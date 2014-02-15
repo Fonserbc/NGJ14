@@ -83,6 +83,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 530529951}
   - 114: {fileID: 530529952}
+  - 114: {fileID: 530529950}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -90,6 +91,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &530529950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 530529949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f3b1acfa129d114fae112a139608b1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPosistions: []
 --- !u!4 &530529951
 Transform:
   m_ObjectHideFlags: 0
@@ -447,7 +460,7 @@ GameObject:
   - 54: {fileID: 1825723029}
   m_Layer: 0
   m_Name: Neo
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
