@@ -3198,6 +3198,7 @@ GameObject:
   - 23: {fileID: 1011579218}
   - 114: {fileID: 1011579217}
   - 54: {fileID: 1011579216}
+  - 114: {fileID: 1011579222}
   m_Layer: 0
   m_Name: Neo
   m_TagString: Player
@@ -3247,7 +3248,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ad516044008ab5046b18e32996c4ec98, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -3283,11 +3284,23 @@ Transform:
   m_PrefabParentObject: {fileID: 400000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
   m_PrefabInternal: {fileID: 1181830899}
   m_GameObject: {fileID: 1011579215}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: -4.37113883e-08}
   m_LocalPosition: {x: -6.91384363, y: -3.02366018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &1011579222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1011579215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02b79c10550d9ee488c4d292f075ef57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movTexture: {fileID: 0}
 --- !u!1 &1012656380
 GameObject:
   m_ObjectHideFlags: 0
@@ -3751,11 +3764,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: -4.37113883e-08
       objectReference: {fileID: 0}
     - target: {fileID: 11400000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
       propertyPath: speed
@@ -3772,6 +3785,22 @@ Prefab:
     - target: {fileID: 100000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ad516044008ab5046b18e32996c4ec98, type: 2}
+    - target: {fileID: 2300000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
