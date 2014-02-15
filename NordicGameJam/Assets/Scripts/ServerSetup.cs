@@ -5,19 +5,20 @@ public class ServerSetup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		Debug.Log ("Server");
+
+		DontDestroyOnLoad (gameObject);
+
+		SetUpServer ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.touchCount >= 1)
-		{
-			Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-			Vector2 touchPos = new Vector2(wp.x, wp.y);
-			if (collider2D == Physics2D.OverlapPoint(touchPos))
-			{
-				Debug.Log ("Server");
-			}
-		}
+
+	}
+
+	void SetUpServer() {
+		Network.InitializeServer (1, 42424, !Network.HavePublicAddress ());
+		MasterServer.RegisterHost ("MorphneoGame", "NeoGame");
 	}
 }
