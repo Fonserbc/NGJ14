@@ -21,14 +21,26 @@ public class EnemyFSM : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        distToPlayer = Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
-        if (distToPlayer > proximity)
+        if (enemyState != "Blinded")
         {
-            enemyState = "Discover";
+            distToPlayer = Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
+            if (distToPlayer > proximity)
+            {
+                enemyState = "Discover";
+            }
+        }
+        
+        if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
+        {
+            enemyState = "Blinded";
         }
 
         switch (enemyState)
         {
+            case "Blinded":
+
+                break;
+
             case "Patrol":
                 if (transform.position.x < patrolFrom && patrolRight)
                 {
