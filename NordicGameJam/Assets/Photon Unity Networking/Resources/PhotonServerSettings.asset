@@ -25,4 +25,6 @@ MonoBehaviour:
   - ActivateButtonRPC
   - AdvanceLevel
   - SendNeoPositionRPC
+  - LoseRPC
+  - SendObjectActiveRPC
   DisableAutoOpenWizard: 0

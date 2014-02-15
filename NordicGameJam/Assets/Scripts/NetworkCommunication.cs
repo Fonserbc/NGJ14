@@ -7,16 +7,15 @@ public class NetworkCommunication : MonoBehaviour {
 	private bool imReady = false;
 	private bool heReady = false;
 
-	private ButtonSyncTest rightButton;
-	private ButtonSyncTest leftButton;
-
-	private Action<int> funcToCall;
-	private int paramToCall;
+	//private Action<int> funcToCall;
+	//private int paramToCall;
 
 	private PhotonView photonView;
 
 	NeoLogicController neo;
 	MorpheosLogicController morph;
+
+	GameObject gameOverText;
 
 	void OnLevelWasLoaded() {
 		neo = GameObject.Find ("Manager").GetComponent<NeoLogicController>();
@@ -31,14 +30,26 @@ public class NetworkCommunication : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (EveryoneReady()) {
-			funcToCall(paramToCall);
-		}
 	}
 
+	// Networking fun stuff
+
+	public void Lose() {
+		photonView.RPC ("LoseRPC", PhotonTargets.All);
+	}
+
+	[RPC]
+	void LoseRPC() {
+		Camera.main.BroadcastMessage ("GameOver");
+	}
+
+	public void RestartLevel() {
+		photonView.RPC ("StartLevel", PhotonTargets.All, Application.loadedLevel - ((PhotonNetwork.isMasterClient)? 0 : 1));
+	}
 
 	public void AdvanceLevel() {
-		photonView.RPC("StartLevel", PhotonTargets.All, Application.loadedLevel + 1);
+		if (Application.loadedLevel == 0) photonView.RPC("StartLevel", PhotonTargets.All, 1);
+		else photonView.RPC("StartLevel", PhotonTargets.All, Application.loadedLevel + ((PhotonNetwork.isMasterClient)? 2 : 1));
 	}
 
 	[RPC]
@@ -62,38 +73,8 @@ public class NetworkCommunication : MonoBehaviour {
 			paramToCall = i;*/
 		}
 	}
-
-	[RPC]
-	void HeReady() {
-		heReady = true;
-	}
-
-	public void ImReady() {
-		imReady = false;
-
-		photonView.RPC ("HeReady", PhotonTargets.Others);
-	}
-
-	public bool EveryoneReady() {
-		if (imReady && heReady) {
-			imReady = false; heReady = false;
-
-			return true;
-		}
-		return false;
-	}
-
+	
 	// Information senders
-
-	public void ActivateButton (int id) {
-		photonView.RPC ("ActivateButtonRPC", PhotonTargets.All, id);
-	}
-
-	[RPC]
-	void ActivateButtonRPC (int id) {
-		if (id == 0) leftButton.SwitchColor ();
-		else rightButton.SwitchColor ();
-	}
 
 	public void SendNeoPosition (Vector3 pos) {
 		photonView.RPC ("SendNeoPositionRPC", PhotonTargets.Others, pos);
@@ -104,5 +85,14 @@ public class NetworkCommunication : MonoBehaviour {
 		if (!PhotonNetwork.isMasterClient) {
 			morph.SetNeoPosition(pos);
 		}
+	}
+
+	public void SendObjectActive (string parent, string name, int active) {
+		photonView.RPC ("SendObjectActiveRPC", PhotonTargets.All, parent, name, active);
+	}
+
+	[RPC]
+	void SendObjectActiveRPC (string parent, string name, int active) {
+		GameObject.Find (parent).transform.FindChild (name).BroadcastMessage ("SetActive", active);
 	}
 }

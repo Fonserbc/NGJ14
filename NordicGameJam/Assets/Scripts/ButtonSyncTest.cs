@@ -46,7 +46,7 @@ public class ButtonSyncTest : MonoBehaviour {
 	}
 
 	void Activate() {
-		network.ActivateButton (id);
+		//network.ActivateButton (id);
 	}
 
 	public void SwitchColor() {
