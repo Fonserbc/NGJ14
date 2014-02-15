@@ -39,17 +39,6 @@ public class clicker : MonoBehaviour
         // keep track of the distance between this gameObject and destinationPosition
         destinationDistance = Vector3.Distance(destinationPosition, myTransform.position);
 
-        if (destinationDistance < .5f)
-        {       // To prevent shakin behavior when near destination
-            moveSpeed = 0;
-            //Stop();
-            //animation.CrossFade("idle");
-        }
-        else if (destinationDistance > .5f)
-        {      // To Reset Speed to default
-            moveSpeed = 8;
-            //animation.CrossFade("run");
-        }
 
         // Moves the Player if the Left Mouse Button was clicked
         if (Input.GetMouseButtonDown(0))

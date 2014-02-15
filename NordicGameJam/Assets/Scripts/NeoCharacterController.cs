@@ -1,4 +1,4 @@
-﻿/*using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class NeoCharacterController : MonoBehaviour {
@@ -6,9 +6,11 @@ public class NeoCharacterController : MonoBehaviour {
     Vector3 worldSpaceHitPoint;
     Ray ray;
     RaycastHit hitInfo;
-    GameObject obj = (GameObject)GameObject.Find("IntersectPlane");
+    //GameObject obj = (GameObject)GameObject.Find("IntersectPlane");
     //Collider coll;
     float hitDist;
+    Vector3 wp;
+    Vector2 touchPos;
 
 	// Use this for initialization
 	void Start () {
@@ -18,32 +20,28 @@ public class NeoCharacterController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //#if UNITY_EDITOR
-        if (Input.GetButtonDown ("Fire1")) {
+        if (Input.GetMouseButtonDown(0))
+        {
+            wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            touchPos = new Vector2(wp.x, wp.y);
+            GameObject.Find("Neo").GetComponent<MoveNeo>().UpdateTarget(wp.x);
             
-            Debug.Log("FIRE");
-			// Construct a ray from the current mouse coordinates
-			ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-            
-            if (coll.Raycast(ray,out hitInfo, hitDist))
-            {
-                worldSpaceHitPoint = ray.GetPoint(hitDist);
-            }
-		}
+        }
         //#endif
 
         //#if UNITY_ANDROID
-        /*if (Input.touchCount > 0)
+        /*if (Input.touchCount >= 1)
         {
-         *  playerPlane = new Plane(Vector3.up, transform.position);
-            ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
-            
-            if (Physics.Raycast(ray, out hitInfo))
-            {
-                worldSpaceHitPoint = hitInfo.point;
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            { // Just clicked
+                wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                touchPos = new Vector2(wp.x, wp.y);
+                GameObject.Find("Neo").GetComponent<MoveNeo>().UpdateTarget(wp.x);
+                
             }
         }*/
         //#endif
-
-        /*GameObject.Find("Neo").GetComponent<MoveNeo>().UpdateTarget(worldSpaceHitPoint.y);
+        //Debug.Log(wp);
+        
         }
-}*/
+}
