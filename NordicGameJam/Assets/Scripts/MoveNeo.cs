@@ -3,7 +3,8 @@ using System.Collections;
 
 public class MoveNeo : MonoBehaviour {
 
-    float _TargetPos;
+    float _targetPos;
+    float speed = 0.2f;
 
 	// Use this for initialization
 	void Start () {
@@ -11,15 +12,20 @@ public class MoveNeo : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if (transform.position < targetPos)
-        {
-           
-        }
-	}
-
-    void UpdateTarget(float TargetPos)
+    void Update()
     {
-        _TargetPos = TargetPos;
+        if (transform.position.y < _targetPos)
+        {
+            transform.Translate(transform.forward * speed);
+        }
+        if (transform.position.y > _targetPos)
+        {
+            transform.Translate(-transform.forward * speed);
+        }
+    }
+
+    public void UpdateTarget(float targetPos)
+    {
+        _targetPos = targetPos;
     }
 }
