@@ -14,7 +14,7 @@ public class CameraPositionAsObject : MonoBehaviour {
 			SetFollow (followObject);
 
 		float ratio = (float)Screen.height / (float)Screen.width;
-		Debug.Log (ratio);
+	
 		if (ratio < (9.0f / 16.0f))
 			Camera.main.orthographicSize = (ratio * 16.0f) / 2.0f;
 		else
@@ -32,6 +32,10 @@ public class CameraPositionAsObject : MonoBehaviour {
 	public void SetFollow (GameObject o) {
 		followObject = o;
 		following = true;
+	}
+
+	public Transform GetFollow() {
+		return followObject.transform;
 	}
 
 	// Releases the camera of the current following object
