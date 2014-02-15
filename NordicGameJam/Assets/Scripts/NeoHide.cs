@@ -50,10 +50,10 @@ public class NeoHide : MonoBehaviour {
  
                     if (isSwipe && gestureTime < maxSwipeTime && gestureDist > minSwipeDist)
                     {
-                        Vector2 direction = touch.position - fingerStartPos;
+                        Vector2 direction = fingerStartPos - touch.position;
                         //Vector2 swipeType = Vector2.zero;
  
-                        if (Mathf.Abs(direction.x) <= Mathf.Abs(direction.y) && direction.y<0)
+                        if (Mathf.Abs(direction.x) <= Mathf.Abs(direction.y))
                         {
                             // the swipe is vertical:
                             //swipeType = Vector2.up * Mathf.Sign(direction.y);
@@ -72,6 +72,7 @@ public class NeoHide : MonoBehaviour {
 
     void Hide()
     {
+        Debug.Log("now Hiding");
         hiding = true;
         //play hide animation
         
