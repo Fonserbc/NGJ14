@@ -1,40 +1,56 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ServerSetup : MonoBehaviour {
+public class ServerSetup : Photon.MonoBehaviour {
 
 	public GameObject networkObject;
+
+	private bool canConnect = false;
+	private bool needsAdvance = false;
+
+	private NetworkCommunication network;
 
 	// Use this for initialization
 	void Start () {
 		Debug.Log ("Server");
 
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
 
-		SetUpServer ();
+		PhotonNetwork.autoJoinLobby = false;
+		PhotonNetwork.ConnectUsingSettings("1");
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (canConnect) {
+			if (PhotonNetwork.playerList.Length > 1)
+				InstantiateNetworkObjectAndAdvance();
+		}
+		if (needsAdvance) network.AdvanceLevel ();
 	}
 
-	void SetUpServer() {
-		Network.InitializeServer (1, 42424, true);
-		MasterServer.RegisterHost ("MorphneoGame", "NeoGame");
+	void OnConnectedToMaster () {
+		Debug.Log ("Connected to Photon master");
+		PhotonNetwork.CreateRoom("Neos", true, true, 2);
 	}
 
 	void OnServerInitialized() {
 		Debug.Log("Server initialized and ready");
 	}
 
-	void OnPlayerConnected(NetworkPlayer player) {
-		Debug.Log("Player " + " connected from " + player.ipAddress);
-
-		InstantiateNetworkObjectAndAdvance();
+	public void OnJoinedRoom()
+	{
+		Debug.Log ("Connected to server");
+		canConnect = true;
 	}
 
+	public void OnFailedToConnectToPhoton(DisconnectCause cause) {
+		Debug.LogError("Cause: " + cause);
+	}
+	
 	void InstantiateNetworkObjectAndAdvance() {
-		NetworkCommunication network = ((GameObject) GameObject.Instantiate (networkObject, new Vector3(), new Quaternion())).GetComponent<NetworkCommunication>();
-		network.AdvanceLevel ();
+		network = ((GameObject) PhotonNetwork.InstantiateSceneObject ("NetworkObject", new Vector3(), new Quaternion(), 0, null)).GetComponent<NetworkCommunication>();
+		needsAdvance = true;
+		canConnect = false;
 	}
 }

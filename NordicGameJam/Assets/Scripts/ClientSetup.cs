@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ClientSetup : MonoBehaviour {
+public class ClientSetup : Photon.MonoBehaviour {
 
 	TextMesh text;
 
@@ -9,7 +9,6 @@ public class ClientSetup : MonoBehaviour {
 	public GameObject networkObject;
 
 	void Awake() {
-		MasterServer.RequestHostList ("MorphneoGame");
 	}
 
 	// Use this for initialization
@@ -18,40 +17,38 @@ public class ClientSetup : MonoBehaviour {
 
 		text = GameObject.Find ("ClientInfoText").GetComponent<TextMesh> ();
 
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
+
+		PhotonNetwork.autoJoinLobby = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (!connected) {
-			HostData[] hosts = MasterServer.PollHostList ();
-
-			text.text = ((hosts.Length == 0) ? "No hosts found" : "Found host!");
-
-			if (hosts.Length == 0) {
-				MasterServer.RequestHostList ("MorphneoGame");
-			} else {
-				hosts[0].useNat = true;
-				NetworkConnectionError err = Network.Connect (hosts [0]);
-				Debug.Log(err);
-
-				connected = true;
-			}
+			PhotonNetwork.ConnectUsingSettings("1");
+			connected = true;
 		}
 	}
 
+	public void OnConnectedToMaster() {
+		Debug.Log("Connected to Photon master");
+		PhotonNetwork.JoinRandomRoom();
+	}
+
 	void InstantiateNetworkObjectAndAdvance() {
-		NetworkCommunication network = ((GameObject) GameObject.Instantiate (networkObject, new Vector3(), new Quaternion())).GetComponent<NetworkCommunication>();
+		NetworkCommunication network = ((GameObject) PhotonNetwork.InstantiateSceneObject ("NetworkObject", new Vector3(), new Quaternion(), 0, null)).GetComponent<NetworkCommunication>();
 		network.AdvanceLevel ();
 	}
 
-	void OnConnectedToServer() {
+	public void OnJoinedRoom()
+	{
 		Debug.Log ("Connected to server");
 		
-		InstantiateNetworkObjectAndAdvance();
+		//InstantiateNetworkObjectAndAdvance();
 	}
 
-	void OnFailedToConnect() {
-		Debug.Log ("Failed to connect to server");
+	public void OnFailedToConnectToPhoton(DisconnectCause cause)
+	{
+		Debug.LogError("Cause: " + cause);
 	}
 }

@@ -19,12 +19,16 @@ public class ButtonSyncTest : MonoBehaviour {
 	void Update () {
 		if (Input.touchCount >= 1)
 		{
-			if (Input.GetTouch(0).phase == TouchPhase.Began) { // Just clicked
-				Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+			Debug.Log("touched");
+			for (int i = 0; i < Input.touchCount; ++i) {
+				Vector3 wp = Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position);
 				Vector2 touchPos = new Vector2(wp.x, wp.y);
-				if (collider2D == Physics2D.OverlapPoint(touchPos))
-				{
+				if (collider2D == Physics2D.OverlapPoint(touchPos) && Input.GetTouch(i).phase == TouchPhase.Began)
+				{ // && (Time.time - lastPressedTime > 0.5f)
 					Activate();
+					Debug.Log("in");
+					lastPressedTime = Time.time;
+					break;
 				}
 			}
 		}

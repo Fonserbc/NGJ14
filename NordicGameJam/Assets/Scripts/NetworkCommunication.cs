@@ -13,6 +13,8 @@ public class NetworkCommunication : MonoBehaviour {
 	private Action<int> funcToCall;
 	private int paramToCall;
 
+	private PhotonView photonView;
+
 	void OnLevelWasLoaded() {
 		rightButton = GameObject.Find ("ButtonRight").GetComponent<ButtonSyncTest>();
 		leftButton = GameObject.Find ("ButtonLeft").GetComponent<ButtonSyncTest>();
@@ -20,6 +22,7 @@ public class NetworkCommunication : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		photonView = gameObject.GetComponent<PhotonView> ();
 		DontDestroyOnLoad (gameObject);
 	}
 	
@@ -30,30 +33,30 @@ public class NetworkCommunication : MonoBehaviour {
 		}
 	}
 
+
 	public void AdvanceLevel() {
-		StartLevel (Application.loadedLevel + 1);
+		photonView.RPC("StartLevel", PhotonTargets.All, Application.loadedLevel + 1);
 	}
 
 	[RPC]
 	void StartLevel (int i) {
-		if (Network.isClient) {
+		if (!PhotonNetwork.isMasterClient) {
 			Debug.Log("StartingLevel "+i+", I'm client");
 
-			ImReady();
+			Application.LoadLevel(i);
+			/*ImReady();
 
 			funcToCall = Application.LoadLevel;
-			paramToCall = i;
-		}
-		else if (Network.isServer) {
-			Debug.Log("StartingLevel "+i+", I'm Server");
-			
-			ImReady();
-
-			funcToCall = Application.LoadLevel;
-			paramToCall = i;
+			paramToCall = i;*/
 		}
 		else {
-			Debug.Log("Error no network initialized!");
+			Debug.Log("StartingLevel "+i+", I'm Server");
+
+			Application.LoadLevel(i);
+			/*ImReady();
+
+			funcToCall = Application.LoadLevel;
+			paramToCall = i;*/
 		}
 	}
 
@@ -65,7 +68,7 @@ public class NetworkCommunication : MonoBehaviour {
 	public void ImReady() {
 		imReady = false;
 
-		networkView.RPC ("HeReady", RPCMode.Others);
+		photonView.RPC ("HeReady", PhotonTargets.Others);
 	}
 
 	public bool EveryoneReady() {
@@ -78,12 +81,16 @@ public class NetworkCommunication : MonoBehaviour {
 	}
 
 	public void ActivateButton (int id) {
-		networkView.RPC ("ActivateButtonRPC", RPCMode.All, id);
+		photonView.RPC ("ActivateButtonRPC", PhotonTargets.All, id);
 	}
 
 	[RPC]
 	void ActivateButtonRPC (int id) {
 		if (id == 0) leftButton.SwitchColor ();
 		else rightButton.SwitchColor ();
+	}
+
+	void OnPhotonSerialize() {
+
 	}
 }

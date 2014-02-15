@@ -607,6 +607,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followObject: {fileID: 443650034}
   speed: 1
+  camScale: {x: 1, y: 1}
+  inverted: 1
 --- !u!1 &1121535271
 GameObject:
   m_ObjectHideFlags: 0
