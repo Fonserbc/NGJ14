@@ -22,7 +22,7 @@ public class EnemyFSM : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(enemyState);
+        //Debug.Log(enemyState);
         if (enemyState != "Blinded")
         {
             distToPlayer = Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position);
