@@ -69,6 +69,7 @@ public class LightController : MonoBehaviour {
             else
             {
                 light.GetComponent<Light>().enabled = true;
+				for (int i = 0; i < lights.Count; ++i) lights[i] = true;
             }
         }
     }

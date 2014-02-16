@@ -7,7 +7,7 @@ PlayerSettings:
   AndroidProfiler: 0
   defaultScreenOrientation: 3
   targetDevice: 2
-  targetGlesGraphics: 2
+  targetGlesGraphics: 1
   targetResolution: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
@@ -25,7 +25,7 @@ PlayerSettings:
   m_MobileMTRendering: 0
   m_UseDX11: 0
   iosShowActivityIndicatorOnLoading: -1
-  androidShowActivityIndicatorOnLoading: 2
+  androidShowActivityIndicatorOnLoading: -1
   displayResolutionDialog: 1
   allowedAutorotateToPortrait: 1
   allowedAutorotateToPortraitUpsideDown: 1
@@ -73,23 +73,19 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-<<<<<<< HEAD
-  iPhoneBundleIdentifier: com.Company.ProductName
-=======
-  iPhoneBundleIdentifier: com.ngj14.morphneo
+  iPhoneBundleIdentifier: com.ngj14.disclosure
   metroEnableIndependentInputSource: 0
   metroEnableLowLatencyPresentationAPI: 0
->>>>>>> 1cfebb6e0ee30f8ff3a8ce10e0696c45d59f36c0
-  productGUID: c9e4f4d6c48a16b41943beceab8ad509
+  productGUID: 85edc578c48d9ce4db3a8ded4924542f
   iPhoneBundleVersion: 1.0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 18
+  AndroidMinSdkVersion: 9
   AndroidPreferredInstallLocation: 1
   aotOptions: 
   apiCompatibilityLevel: 2
   iPhoneStrippingLevel: 0
   iPhoneScriptCallOptimization: 0
-  ForceInternetPermission: 1
+  ForceInternetPermission: 0
   ForceSDCardPermission: 0
   CreateWallpaper: 0
   APKExpansionFiles: 0
@@ -118,14 +114,7 @@ PlayerSettings:
     m_Icons:
     - m_Icon: {fileID: 0}
       m_Size: 128
-<<<<<<< HEAD
-  m_BuildTargetBatching:
-  - m_BuildTarget: Android
-    m_StaticBatching: 1
-    m_DynamicBatching: 1
-=======
   m_BuildTargetBatching: []
->>>>>>> 1cfebb6e0ee30f8ff3a8ce10e0696c45d59f36c0
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
   wiiRegion: 1
@@ -185,6 +174,7 @@ PlayerSettings:
   metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   metroCapabilities: {}
+  metroUnprocessedPlugins: []
   metroCompilationOverrides: 1
   blackberryDeviceAddress: 
   blackberryDevicePassword: 

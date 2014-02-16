@@ -327,7 +327,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -17
   m_SortingLayerID: 3441111435
   m_Sprite: {fileID: 21300000, guid: 524db5c26185fa74b9a172c27c35614b, type: 3}
@@ -1119,8 +1119,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 260016761}
   - 23: {fileID: 260016763}
-  - 102: {fileID: 260016762}
   - 114: {fileID: 260016764}
+  - 102: {fileID: 260016762}
   m_Layer: 0
   m_Name: GameOverText
   m_TagString: Untagged
@@ -2842,7 +2842,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -17
   m_SortingLayerID: 3441111435
   m_Sprite: {fileID: 21300000, guid: 524db5c26185fa74b9a172c27c35614b, type: 3}
@@ -4491,7 +4491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65a733104d1d0fd44888e57d6feacd20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1.5
 --- !u!23 &1011579218
 Renderer:
   m_ObjectHideFlags: 0
@@ -4890,7 +4890,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -17
   m_SortingLayerID: 3441111435
   m_Sprite: {fileID: 21300000, guid: 524db5c26185fa74b9a172c27c35614b, type: 3}
@@ -6151,7 +6151,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -17
   m_SortingLayerID: 3441111435
   m_Sprite: {fileID: 21300000, guid: 524db5c26185fa74b9a172c27c35614b, type: 3}
@@ -6636,6 +6636,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
+      propertyPath: speed
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: caeb56f65b62cfa429b5a8ddf17cfd2a, type: 2}
   m_RootGameObject: {fileID: 1011579215}
@@ -6729,7 +6733,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -17
   m_SortingLayerID: 3441111435
   m_Sprite: {fileID: 21300000, guid: 524db5c26185fa74b9a172c27c35614b, type: 3}
@@ -6788,7 +6792,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c589f2f589728a84da68d4a1a4e29390, type: 2}
+  - {fileID: 2100000, guid: 32e3eab932029ff41bec50135e452cfe, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -7152,9 +7156,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1664621089}
   - 23: {fileID: 1664621092}
-  - 102: {fileID: 1664621091}
   - 61: {fileID: 1664621090}
   - 114: {fileID: 1664621093}
+  - 102: {fileID: 1664621091}
   m_Layer: 0
   m_Name: PressToRestart
   m_TagString: Untagged
@@ -7437,6 +7441,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1726539827}
   - 212: {fileID: 1726539828}
+  - 95: {fileID: 1726539829}
   m_Layer: 0
   m_Name: Idle_pose_neo]
   m_TagString: Untagged
@@ -7479,6 +7484,20 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_Sprite: {fileID: 21300000, guid: d12a6f88536b0f344a74ae134b75865e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!95 &1726539829
+Animator:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1726539826}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ec6d2b1ec2ea7d43a56a464f074d3d9, type: 2}
+  m_CullingMode: 0
+  m_ApplyRootMotion: 1
+  m_AnimatePhysics: 0
+  m_HasTransformHierarchy: 1
 --- !u!1 &1733194968
 GameObject:
   m_ObjectHideFlags: 0

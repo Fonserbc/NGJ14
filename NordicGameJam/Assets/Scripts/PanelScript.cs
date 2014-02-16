@@ -49,6 +49,7 @@ public class PanelScript : MonoBehaviour {
 								if (onPannel) {
 									GameObject.Find("NetworkObject").GetComponent<NetworkCommunication>().SendEnergy();
 									Destroy(gameObject);
+									Debug.Log ("Swipe");
 								}
                             }
 
@@ -64,6 +65,9 @@ public class PanelScript : MonoBehaviour {
 	void OnTriggerStay(Collider col) {
 		if (col.tag == "Player") {
 			onPannel = true;
+			Debug.Log ("Onpannel");
+			GameObject.Find("NetworkObject").GetComponent<NetworkCommunication>().SendEnergy();
+			Destroy(gameObject);
 		}
 	}
 }

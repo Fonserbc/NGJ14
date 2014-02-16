@@ -32,10 +32,10 @@ public class EnemyFSM : MonoBehaviour {
             }
         }
         
-        /*if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
+        if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
         {
             enemyState = "Blinded";
-        }*/
+        }
 
         switch (enemyState)
         {
