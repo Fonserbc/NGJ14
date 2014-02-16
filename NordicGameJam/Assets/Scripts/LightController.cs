@@ -6,6 +6,7 @@ public class LightController : MonoBehaviour {
 
     public int numberOfRooms;
     public List<bool> lights;
+    GameObject[] lighting;
     int lightNum;
 	// Use this for initialization
 	void Start () {
@@ -41,6 +42,11 @@ public class LightController : MonoBehaviour {
         if (b.Length > 0)
             lightNum = int.Parse(b);
 
+        if (lightNum == this.GetComponent<GlobalVariables>().currentRoom)
+        {
+            boolLights();
+        }
+
         if (lights[lightNum]){
             lights[lightNum] = false;
         }   
@@ -49,5 +55,21 @@ public class LightController : MonoBehaviour {
             lights[lightNum] = true;
         }
             
+    }
+
+    public void boolLights()
+    {
+        lighting = GameObject.FindGameObjectsWithTag("Lights");
+        foreach (GameObject light in lighting)
+        {
+            if (light.GetComponent<Light>().enabled)
+            {
+                light.GetComponent<Light>().enabled = false;
+            }
+            else
+            {
+                light.GetComponent<Light>().enabled = true;
+            }
+        }
     }
 }

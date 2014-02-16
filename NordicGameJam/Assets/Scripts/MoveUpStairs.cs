@@ -63,12 +63,20 @@ public class MoveUpStairs : MonoBehaviour {
                                     if (player.position.x < Camera.main.transform.position.x){
                                         camFollow.SetFollow(nextRoomLeft);
                                         GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom--;
+                                        if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
+                                        {
+                                            GameObject.Find("Manager").GetComponent<LightController>().boolLights();
+                                        }
                                     }
 
                                     else if (player.position.x > Camera.main.transform.position.x)
                                     {
                                         camFollow.SetFollow(nextRoomRight);
                                         GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom++;
+                                        if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
+                                        {
+                                            GameObject.Find("Manager").GetComponent<LightController>().boolLights();
+                                        }
                                     }
                                        
                                     Debug.Log(player.position.y + " " + levelHeight);
