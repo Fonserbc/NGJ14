@@ -89,6 +89,8 @@ public class NetworkCommunication : MonoBehaviour {
 
 	public void SendObjectActive (string parent, string name, int active) {
 		photonView.RPC ("SendObjectActiveRPC", PhotonTargets.All, parent, name, active);
+
+		morph.ObjectPressed ();
 	}
 
 	[RPC]
