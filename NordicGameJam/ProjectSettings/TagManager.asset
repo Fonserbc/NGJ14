@@ -3,6 +3,10 @@
 --- !u!78 &1
 TagManager:
   tags:
+  - NetworkObject
+  - Camera
+  - Level
+  - Lights
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
@@ -41,7 +45,13 @@ TagManager:
     userID: 0
     uniqueID: 0
     locked: 0
+<<<<<<< HEAD
   - name: Alpha
     userID: 1
     uniqueID: 4043837587
+=======
+  - name: Cameras
+    userID: 1
+    uniqueID: 3441111435
+>>>>>>> 1cfebb6e0ee30f8ff3a8ce10e0696c45d59f36c0
     locked: 0

@@ -1,0 +1,37 @@
+Networking
+	Client/Server
+Neo
+	Animations
+		Run Right
+		Run Left
+		Idle
+		Hiding
+		Use item
+
+Mopheus
+	Unlock doors
+	Turn on/off lights
+	Timer
+	Connection Lost effect
+	
+Guards
+	Animations
+		Walk Right
+		Walk Left
+		Shoot/Discover
+		Idle
+		Switch lights on
+	AI
+		Light switching behaviour
+		Patrolling
+		FOV
+		
+Props/Assets
+	Door
+		Closed/Opened
+	Elevator
+		Open/Close
+	Hiding Door
+		Open/Close
+	Floors
+	Walls
