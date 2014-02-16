@@ -6,8 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< HEAD
+    path: Assets/Scenes/Light_Test_03.unity
+=======
     path: Assets/Scenes/ChooseMenu.unity
   - enabled: 1
     path: Assets/SceneNeo0.unity
   - enabled: 1
     path: Assets/SceneMorpheos0.unity
+>>>>>>> 1cfebb6e0ee30f8ff3a8ce10e0696c45d59f36c0
