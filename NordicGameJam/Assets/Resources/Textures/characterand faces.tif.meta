@@ -1,0 +1,166 @@
+fileFormatVersion: 2
+guid: a1255d7de1ddd5a42a44846870ba46bb
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 10000
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: characterand faces_0
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 3635
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_1
+      rect:
+        serializedVersion: 2
+        x: 931
+        y: 3633
+        width: 106
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_2
+      rect:
+        serializedVersion: 2
+        x: 1096
+        y: 2716
+        width: 10
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_3
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 2687
+        width: 5
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 2669
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_5
+      rect:
+        serializedVersion: 2
+        x: 1085
+        y: 2673
+        width: 5
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_6
+      rect:
+        serializedVersion: 2
+        x: 1081
+        y: 2641
+        width: 10
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_7
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 2525
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_8
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 1647
+        width: 23
+        height: 99
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_9
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 1361
+        width: 10
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_10
+      rect:
+        serializedVersion: 2
+        x: 664
+        y: 918
+        width: 156
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_11
+      rect:
+        serializedVersion: 2
+        x: 568
+        y: 113
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: characterand faces_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1443
+        height: 4038
+      alignment: 0
+      pivot: {x: .5, y: .5}
+  spritePackingTag: 
+  userData: 
