@@ -60,10 +60,17 @@ public class MoveUpStairs : MonoBehaviour {
 
                                 if (Mathf.Abs(direction.x) <= Mathf.Abs(direction.y))
                                 {
-                                    if (player.position.x < Camera.main.transform.position.x)
+                                    if (player.position.x < Camera.main.transform.position.x){
                                         camFollow.SetFollow(nextRoomLeft);
+                                        GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom--;
+                                    }
+
                                     else if (player.position.x > Camera.main.transform.position.x)
+                                    {
                                         camFollow.SetFollow(nextRoomRight);
+                                        GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom++;
+                                    }
+                                       
                                     Debug.Log(player.position.y + " " + levelHeight);
 
                                     GameObject.Find("Neo").transform.position = new Vector3(player.position.x, player.position.y+levelHeight, 0);

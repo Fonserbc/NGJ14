@@ -17,10 +17,33 @@ public class MoveCamera : MonoBehaviour {
 	}
 
     void OnTriggerEnter(Collider other){
-		if (player.position.x < Camera.main.transform.position.x)
-			camFollow.SetFollow(nextRoomLeft);
-		else if (player.position.x > Camera.main.transform.position.x)
-			camFollow.SetFollow(nextRoomRight);
+        if (player.position.x < Camera.main.transform.position.x)
+        {
+            camFollow.SetFollow(nextRoomLeft);
+            GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom--;
+            if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
+            {
+                //make alpha dark
+            }
+            else //if (not already light)
+            {
+                //make alpha light
+            }
+        }
+
+        else if (player.position.x > Camera.main.transform.position.x)
+        {
+            camFollow.SetFollow(nextRoomRight);
+            GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom++;
+            if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
+            {
+                //run kornels' code here
+            }
+            else //if (not already light)
+            {
+                //make alpha light
+            }
+        }
 	}
     
 }
