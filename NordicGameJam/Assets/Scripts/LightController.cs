@@ -6,6 +6,7 @@ public class LightController : MonoBehaviour {
 
     public int numberOfRooms;
     public List<bool> lights;
+    int lightNum;
 	// Use this for initialization
 	void Start () {
         lights = new List<bool>();
@@ -27,12 +28,22 @@ public class LightController : MonoBehaviour {
         }
 	}
 
-    void setLight(int lightNum)
+    void setLight(string roomID)
     {
+        string b = string.Empty;
+
+        for (int i = 0; i < roomID.Length; i++)
+        {
+            if (char.IsDigit(roomID[i]))
+                b += roomID[i];
+        }
+
+        if (b.Length > 0)
+            lightNum = int.Parse(b);
+
         if (lights[lightNum]){
             lights[lightNum] = false;
-        }
-            
+        }   
         else
         {
             lights[lightNum] = true;
