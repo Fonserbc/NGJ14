@@ -23,11 +23,7 @@ public class MoveCamera : MonoBehaviour {
             GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom--;
             if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
             {
-                //make alpha dark
-            }
-            else //if (not already light)
-            {
-                //make alpha light
+                GameObject.Find("Manager").GetComponent<LightController>().boolLights();
             }
         }
 
@@ -37,11 +33,7 @@ public class MoveCamera : MonoBehaviour {
             GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom++;
             if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
             {
-                //run kornels' code here
-            }
-            else //if (not already light)
-            {
-                //make alpha light
+                GameObject.Find("Manager").GetComponent<LightController>().boolLights();
             }
         }
 	}

@@ -29,9 +29,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 400002}
   - 23: {fileID: 2300000}
-  - 102: {fileID: 10200000}
   - 61: {fileID: 6100000}
   - 114: {fileID: 11400002}
+  - 102: {fileID: 10200000}
   m_Layer: 0
   m_Name: PressToRestart
   m_TagString: Untagged
@@ -66,8 +66,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400006}
   - 23: {fileID: 2300004}
-  - 102: {fileID: 10200002}
   - 114: {fileID: 11400004}
+  - 102: {fileID: 10200002}
   m_Layer: 0
   m_Name: GameOverText
   m_TagString: Untagged
@@ -184,7 +184,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: c589f2f589728a84da68d4a1a4e29390, type: 2}
+  - {fileID: 2100000, guid: 32e3eab932029ff41bec50135e452cfe, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -249,7 +249,7 @@ Behaviour:
 --- !u!102 &10200000
 TextMesh:
   serializedVersion: 3
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
@@ -270,7 +270,7 @@ TextMesh:
 --- !u!102 &10200002
 TextMesh:
   serializedVersion: 3
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100006}
