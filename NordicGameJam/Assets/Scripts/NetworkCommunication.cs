@@ -113,6 +113,6 @@ public class NetworkCommunication : MonoBehaviour {
 
 	[RPC]
 	void TurnLightsRPC (string name) {
-		GameObject.Find ("Manager").SendMessage ("SetLight", name);
+		GameObject.Find ("Manager").SendMessage ("setLight", name);
 	}
 }

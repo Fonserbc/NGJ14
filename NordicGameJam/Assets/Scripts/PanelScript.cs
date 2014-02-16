@@ -59,12 +59,10 @@ public class PanelScript : MonoBehaviour {
                 }
             }
         }
-
-		onPannel = false;
 	}
 
 	void OnTriggerStay(Collider col) {
-		if (col.tag == "Panel") {
+		if (col.tag == "Player") {
 			onPannel = true;
 		}
 	}
