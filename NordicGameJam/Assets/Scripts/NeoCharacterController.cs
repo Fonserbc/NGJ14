@@ -20,13 +20,13 @@ public class NeoCharacterController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //#if UNITY_EDITOR
-        /*if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             touchPos = new Vector2(wp.x, wp.y);
             GameObject.Find("Neo").GetComponent<MoveNeo>().UpdateTarget(wp.x);
             
-        }*/
+        }
         //#endif
 
         //#if UNITY_ANDROID

@@ -13,6 +13,7 @@ public class RestartOnClick : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (collider2D && renderer.enabled) {
+
 			if (Input.touchCount >= 1)
 			{
 				if (Input.GetTouch(0).phase == TouchPhase.Began) { // Just clicked
@@ -38,6 +39,17 @@ public class RestartOnClick : MonoBehaviour {
 
 	void GameOver() {
 		renderer.enabled = true;
+		HideStuff ();
+	}
+	
+	void HideStuff() {
+		GameObject[] camps = GameObject.FindGameObjectsWithTag ("Camera");
+		Debug.Log(camps.Length+"");
+		
+		foreach (GameObject o in camps)
+		{
+			Destroy(o);//o.renderer.enabled = false;
+		}
 	}
 
 	void Activate() {

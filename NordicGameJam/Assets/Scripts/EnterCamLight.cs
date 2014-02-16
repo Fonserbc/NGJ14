@@ -19,7 +19,7 @@ public class EnterCamLight : MonoBehaviour {
     {
 		if (active) {
 			if (other.tag == "Player") {
-					net.Lose ();
+				net.Lose ();
 			}
 		}
     }
