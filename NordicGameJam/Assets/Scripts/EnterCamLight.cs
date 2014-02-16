@@ -12,7 +12,8 @@ public class EnterCamLight : MonoBehaviour {
 	}
 
 	void Update() {
-		if (!PhotonNetwork.isMasterClient) renderer.enabled = active;
+		if (!PhotonNetwork.isMasterClient) 
+			renderer.material.color = (active)? Color.white : Color.black; //////////////////////
 	}
 
 	void OnTriggerEnter (Collider other)

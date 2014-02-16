@@ -9,6 +9,8 @@ public class PanelScript : MonoBehaviour {
     private bool isSwipe = false;
     private float minSwipeDist = 50.0f;
     private float maxSwipeTime = 0.5f;
+
+	private bool onPannel = false;
 	
 	// Update is called once per frame
 	void Update () {
@@ -43,6 +45,11 @@ public class PanelScript : MonoBehaviour {
                             {
                                 //Run Panel animation
                                 //Send less stress to morpheus
+
+								if (onPannel) {
+									GameObject.Find("NetworkObject").GetComponent<NetworkCommunication>().SendEnergy();
+									Destroy(gameObject);
+								}
                             }
 
 
@@ -52,5 +59,13 @@ public class PanelScript : MonoBehaviour {
                 }
             }
         }
+
+		onPannel = false;
+	}
+
+	void OnTriggerStay(Collider col) {
+		if (col.tag == "Panel") {
+			onPannel = true;
+		}
 	}
 }

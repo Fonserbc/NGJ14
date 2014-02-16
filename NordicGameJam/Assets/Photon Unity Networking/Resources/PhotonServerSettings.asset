@@ -27,4 +27,6 @@ MonoBehaviour:
   - SendNeoPositionRPC
   - LoseRPC
   - SendObjectActiveRPC
+  - SendEnergyRPC
+  - TurnLightsRPC
   DisableAutoOpenWizard: 0

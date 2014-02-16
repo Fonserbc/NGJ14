@@ -4,7 +4,7 @@ using System.Collections;
 public class MorpheosLogicController : MonoBehaviour {
 
 	GameObject neo;
-	float roundTime = 15.0f;
+	float roundTime = 20.0f;
 	float roundFuzz = 7.0f; 
 	float pressCost = 2.0f;
 
@@ -33,10 +33,10 @@ public class MorpheosLogicController : MonoBehaviour {
 			}
 		}
 		else {
-			time -= Time.deltaTime;
+			/*time -= Time.deltaTime;
 			if (time < 0.0f) {
 				RegainPower();
-			}
+			}*/
 		}
 	}
 

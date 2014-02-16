@@ -97,4 +97,22 @@ public class NetworkCommunication : MonoBehaviour {
 	void SendObjectActiveRPC (string parent, string name, int active) {
 		GameObject.Find (parent).transform.FindChild (name).BroadcastMessage ("SetActive", active);
 	}
+
+	public void SendEnergy() {
+		photonView.RPC ("SendEnergyRPC", PhotonTargets.Others);
+	}
+
+	[RPC]
+	void SendEnergyRPC() {
+		if (morph) morph.RegainPower();
+	}
+
+	public void TurnLights (string name) {
+		photonView.RPC ("TurnLightsRPC", PhotonTargets.MasterClient, name);
+	}
+
+	[RPC]
+	void TurnLightsRPC (string name) {
+		GameObject.Find ("Manager").SendMessage ("SetLight", name);
+	}
 }
