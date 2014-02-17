@@ -18,5 +18,7 @@ public class PreMenuTap : MonoBehaviour {
 
             }
         }
+
+		if (Input.GetMouseButtonDown(0)) Application.LoadLevel("ChooseMenu");
 	}
 }

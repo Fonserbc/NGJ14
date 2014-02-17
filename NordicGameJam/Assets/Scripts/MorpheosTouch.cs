@@ -14,7 +14,7 @@ public class MorpheosTouch : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.touchCount >= 1)
+		if (Input.touchCount >= 1 && !PhotonNetwork.isMasterClient)
 		{
 			for (int i = 0; i < Input.touchCount; ++i) {
 				if (Input.GetTouch(i).phase == TouchPhase.Began) { // Just clicked

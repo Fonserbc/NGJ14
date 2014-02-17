@@ -59,6 +59,6 @@ public class RoomLight : MonoBehaviour {
 	}
 
 	void SwitchActive() {
-		net.TurnLights (transform.parent.tag);
+		net.TurnLights (transform.parent.name);
 	}
 }

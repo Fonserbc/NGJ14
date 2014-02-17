@@ -10,7 +10,11 @@ public class PanelScript : MonoBehaviour {
     private float minSwipeDist = 50.0f;
     private float maxSwipeTime = 0.5f;
 
+	public AudioClip pickupAudio;
+
 	private bool onPannel = false;
+
+	private bool activated = false;
 	
 	// Update is called once per frame
 	void Update () {
@@ -62,12 +66,16 @@ public class PanelScript : MonoBehaviour {
         }
 	}
 
-	void OnTriggerStay(Collider col) {
-		if (col.tag == "Player") {
-			onPannel = true;
-			Debug.Log ("Onpannel");
-			GameObject.Find("NetworkObject").GetComponent<NetworkCommunication>().SendEnergy();
-			Destroy(gameObject);
+	void OnTriggerEnter(Collider col) {
+		if (!activated) {
+			if (col.tag == "Player") {
+				onPannel = true;
+				audio.clip = pickupAudio;
+				audio.Play ();
+				activated = true;
+				Debug.Log ("Onpannel");
+				GameObject.FindGameObjectWithTag("NetworkObject").GetComponent<NetworkCommunication>().SendEnergy();
+			}
 		}
 	}
 }

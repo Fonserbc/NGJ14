@@ -48,8 +48,11 @@ public class NetworkCommunication : MonoBehaviour {
 	}
 
 	public void AdvanceLevel() {
-		if (Application.loadedLevel == 0) photonView.RPC("StartLevel", PhotonTargets.All, 1);
-		else photonView.RPC("StartLevel", PhotonTargets.All, Application.loadedLevel + ((PhotonNetwork.isMasterClient)? 2 : 1));
+		photonView.RPC("StartLevel", PhotonTargets.All, 2);
+	}
+
+	void OnPhotonPlayerDisconnected(PhotonPlayer player) {
+		Application.Quit ();
 	}
 
 	[RPC]
@@ -58,6 +61,8 @@ public class NetworkCommunication : MonoBehaviour {
 			Debug.Log("StartingLevel "+(i+1)+", I'm client");
 
 			Application.LoadLevel(i+1);
+
+			Debug.Log("Level "+(i+1)+" loaded");
 			/*ImReady();
 
 			funcToCall = Application.LoadLevel;
@@ -67,6 +72,8 @@ public class NetworkCommunication : MonoBehaviour {
 			Debug.Log("StartingLevel "+i+", I'm Server");
 
 			Application.LoadLevel(i);
+
+			Debug.Log("Level "+(i)+" loaded");
 			/*ImReady();
 
 			funcToCall = Application.LoadLevel;
@@ -84,18 +91,19 @@ public class NetworkCommunication : MonoBehaviour {
 	void SendNeoPositionRPC (Vector3 pos) {
 		if (!PhotonNetwork.isMasterClient) {
 			morph.SetNeoPosition(pos);
+			GameObject.Find("Neo").SendMessage("Beep");
 		}
 	}
 
 	public void SendObjectActive (string parent, string name, int active) {
 		photonView.RPC ("SendObjectActiveRPC", PhotonTargets.All, parent, name, active);
 
-		morph.ObjectPressed ();
+		if (morph != null) morph.ObjectPressed ();
 	}
 
 	[RPC]
 	void SendObjectActiveRPC (string parent, string name, int active) {
-		GameObject.Find (parent).transform.FindChild (name).BroadcastMessage ("SetActive", active);
+		GameObject.Find (parent).transform.FindChild (name).SendMessage ("SetActive", active);
 	}
 
 	public void SendEnergy() {
@@ -104,7 +112,7 @@ public class NetworkCommunication : MonoBehaviour {
 
 	[RPC]
 	void SendEnergyRPC() {
-		if (morph) morph.RegainPower();
+		morph.RegainPower();
 	}
 
 	public void TurnLights (string name) {

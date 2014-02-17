@@ -40,7 +40,13 @@ public class StartButtons : MonoBehaviour {
 	void Activate() {
 		if (activated) return;
 		Camera.main.SendMessage("SetFollow", camPos);
-		GameObject.Instantiate(networkObject, transform.position, transform.rotation);
+		GameObject aux = (GameObject) GameObject.Instantiate(networkObject, transform.position, transform.rotation);
+
+		GameObject gui = GameObject.Find ("GUI");
+
+		aux.SendMessage ("SetGameName", gui.GetComponent<ChooseMenuGUI> ().gameName);
 		activated = true;
+
+		gui.SetActive (false);
 	}
 }

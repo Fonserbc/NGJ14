@@ -42,6 +42,8 @@ public class LightController : MonoBehaviour {
         if (b.Length > 0)
             lightNum = int.Parse(b);
 
+		Debug.Log (roomID + " got " + b);
+
         if (lightNum == this.GetComponent<GlobalVariables>().currentRoom)
         {
             boolLights();
@@ -69,8 +71,12 @@ public class LightController : MonoBehaviour {
             else
             {
                 light.GetComponent<Light>().enabled = true;
-				for (int i = 0; i < lights.Count; ++i) lights[i] = true;
             }
         }
     }
+
+	public void CheckLights(int cur, int nex) {
+		if ((lights [cur] && !lights [nex]) || (!lights [cur] && lights [nex]))
+			boolLights ();
+	}
 }

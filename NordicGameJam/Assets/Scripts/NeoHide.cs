@@ -7,6 +7,7 @@ public class NeoHide : MonoBehaviour {
     bool hiding = false;
     private float fingerStartTime = 0.0f;
     private Vector2 fingerStartPos = Vector2.zero;
+    AudioClip hideSound;
  
     private bool isSwipe = false;
     private float minSwipeDist = 50.0f;
@@ -21,10 +22,14 @@ public class NeoHide : MonoBehaviour {
     {
         hideable = false;
     }
+
+	void Awake () {
+		hideSound = Resources.Load ("Sound fx/Neo/hide") as AudioClip;
+	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (hideable)
+        if (hideable&&!hiding)
         {
             if (Input.touchCount > 0)
         {
@@ -68,13 +73,45 @@ public class NeoHide : MonoBehaviour {
             }
         }
         }
+        else if (hiding)
+        {
+            if (Input.touchCount >= 1)
+            {
+                if (Input.GetTouch(0).phase == TouchPhase.Began)
+                { // Just clicked
+                    unHide();
+                }
+            }
+        }
 	}
 
     void Hide()
     {
         Debug.Log("now Hiding");
         hiding = true;
+        hideable = false;
+        audio.PlayOneShot(hideSound);
+        GameObject blackCam = Instantiate(Resources.Load("BlackCam")) as GameObject;
+        GameObject.Find("Main Camera Neo").camera.enabled = false;
+        GameObject.Find("BlackCam").camera.enabled = true;
+
         //play hide animation
         
     }
+
+    void unHide()
+    {
+        //Debug.Log("now Hiding");
+        hiding = false;
+        //hideable = true;
+        audio.PlayOneShot(hideSound);
+        //GameObject blackCam = Instantiate(Resources.Load("BlackCam")) as GameObject;
+        GameObject.Find("Main Camera Neo").camera.enabled = true;
+        GameObject.Find("BlackCam").camera.enabled = false;
+        Destroy(GameObject.Find("BlackCam"));
+
+        //play hide animation
+
+    }
+
 }

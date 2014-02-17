@@ -8,33 +8,36 @@ public class MoveCamera : MonoBehaviour {
 
 	private CameraPositionAsObject camFollow;
 	//private GlobalVariables global;
-	private Transform player;
+	private GameObject player;
 
 	void Start() {
 		camFollow = Camera.main.GetComponent<CameraPositionAsObject> ();
 		//global = GameObject.Find ("Manager").GetComponent<GlobalVariables> ();
-		player = GameObject.FindGameObjectWithTag ("Player").transform;
+		player = GameObject.Find ("Neo");
 	}
 
     void OnTriggerEnter(Collider other){
-        if (player.position.x < Camera.main.transform.position.x)
+		int c = GameObject.Find ("Manager").GetComponent<GlobalVariables> ().currentRoom;
+
+
+        if (player.transform.position.x < Camera.main.transform.position.x)
         {
             camFollow.SetFollow(nextRoomLeft);
-            GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom--;
-            if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
-            {
-                GameObject.Find("Manager").GetComponent<LightController>().boolLights();
-            }
+			GameObject.Find("Manager").GetComponent<LightController>().CheckLights(c, c - 1);
+			
+			GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom--;
+
+			player.SendMessage("UpdateTarget", transform.position.x - transform.lossyScale.x*1.5f);
         }
 
-        else if (player.position.x > Camera.main.transform.position.x)
+		else if (player.transform.position.x > Camera.main.transform.position.x)
         {
             camFollow.SetFollow(nextRoomRight);
-            GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom++;
-            if (!GameObject.Find("Manager").GetComponent<LightController>().lights[GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom])
-            {
-                GameObject.Find("Manager").GetComponent<LightController>().boolLights();
-            }
+			GameObject.Find("Manager").GetComponent<LightController>().CheckLights(c, c + 1);
+			
+			GameObject.Find("Manager").GetComponent<GlobalVariables>().currentRoom++;
+
+			player.SendMessage("UpdateTarget", transform.position.x + transform.lossyScale.x*1.5f);
         }
 	}
     

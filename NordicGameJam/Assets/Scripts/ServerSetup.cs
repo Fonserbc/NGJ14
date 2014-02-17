@@ -8,6 +8,8 @@ public class ServerSetup : Photon.MonoBehaviour {
 	private bool canConnect = false;
 	private bool needsAdvance = false;
 
+	private string gameName = "gameTest";
+
 	private NetworkCommunication network;
 
 	// Use this for initialization
@@ -30,8 +32,8 @@ public class ServerSetup : Photon.MonoBehaviour {
 	}
 
 	void OnConnectedToMaster () {
-		Debug.Log ("Connected to Photon master");
-		PhotonNetwork.CreateRoom("Neos", true, true, 2);
+		Debug.Log ("Connected to Photon master, creating room "+gameName);
+		PhotonNetwork.CreateRoom(gameName, true, true, 2);
 	}
 
 	void OnServerInitialized() {
@@ -40,7 +42,7 @@ public class ServerSetup : Photon.MonoBehaviour {
 
 	public void OnJoinedRoom()
 	{
-		Debug.Log ("Connected to server");
+		Debug.Log ("Connected to server, on room "+gameName);
 		canConnect = true;
 	}
 
@@ -52,5 +54,13 @@ public class ServerSetup : Photon.MonoBehaviour {
 		network = ((GameObject) PhotonNetwork.InstantiateSceneObject ("NetworkObject", new Vector3(), new Quaternion(), 0, null)).GetComponent<NetworkCommunication>();
 		needsAdvance = true;
 		canConnect = false;
+	}
+
+	public void SetGameName(string name) {
+		gameName = name;
+	}
+
+	void OnPhotonCreateGameFailed() {
+		Application.LoadLevel (Application.loadedLevel);
 	}
 }

@@ -38,8 +38,9 @@ public class RestartOnClick : MonoBehaviour {
 	}
 
 	void GameOver() {
+		if (!renderer.enabled) HideStuff ();
+		
 		renderer.enabled = true;
-		HideStuff ();
 	}
 	
 	void HideStuff() {

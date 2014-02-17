@@ -5,31 +5,28 @@ public class EnterCamLight : MonoBehaviour {
 
 	NetworkCommunication net;
 
-	bool active = true;
+	public bool activeCam;
 
 	void Start() {
 		net = GameObject.FindGameObjectWithTag ("NetworkObject").GetComponent<NetworkCommunication> ();
+		activeCam = true;
 	}
 
 	void Update() {
 		if (!PhotonNetwork.isMasterClient) 
-			renderer.material.color = (active)? Color.white : Color.black; //////////////////////
+			renderer.material.color = (activeCam)? Color.white : Color.black; //////////////////////
 	}
 
-	void OnTriggerEnter (Collider other)
-    {
-		if (active) {
-			if (other.tag == "Player") {
-				net.Lose ();
-			}
-		}
-    }
 
-	void SetActive(int i) {
-		active = (i == 1);
+	public void LooseIfActive() {
+		if (activeCam) net.Lose ();
+	}
+
+	public void SetActive(int i) {
+		activeCam = (i == 1);
 	}
 
 	void Activate(bool b) {
-		net.SendObjectActive (transform.parent.name, gameObject.name, (active)? 0 : 1);
+		net.SendObjectActive (transform.parent.name, gameObject.name, (activeCam)? 0 : 1);
 	}
 }

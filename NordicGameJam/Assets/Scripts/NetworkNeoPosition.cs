@@ -5,7 +5,7 @@ public class NetworkNeoPosition : MonoBehaviour {
 
 	private NetworkCommunication network;
 
-	public float period = 1.0f;
+	public float period = 2.0f;
 
 	private float time = 0.0f;
 

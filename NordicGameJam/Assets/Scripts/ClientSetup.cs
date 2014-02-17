@@ -8,6 +8,8 @@ public class ClientSetup : Photon.MonoBehaviour {
 	bool connected = false;
 	public GameObject networkObject;
 
+	string gameName = "gameTest";
+
 	void Awake() {
 	}
 
@@ -31,13 +33,8 @@ public class ClientSetup : Photon.MonoBehaviour {
 	}
 
 	public void OnConnectedToMaster() {
-		Debug.Log("Connected to Photon master");
-		PhotonNetwork.JoinRandomRoom();
-	}
-
-	void InstantiateNetworkObjectAndAdvance() {
-		NetworkCommunication network = ((GameObject) PhotonNetwork.InstantiateSceneObject ("NetworkObject", new Vector3(), new Quaternion(), 0, null)).GetComponent<NetworkCommunication>();
-		network.AdvanceLevel ();
+		Debug.Log("Connected to Photon master, joining game "+gameName);
+		PhotonNetwork.JoinRoom(gameName);
 	}
 
 	public void OnJoinedRoom()
@@ -50,5 +47,13 @@ public class ClientSetup : Photon.MonoBehaviour {
 	public void OnFailedToConnectToPhoton(DisconnectCause cause)
 	{
 		Debug.LogError("Cause: " + cause);
+	}
+
+	public void OnPhotonJoinRoomFailed() {
+		Application.LoadLevel (Application.loadedLevel);
+	}
+
+	public void SetGameName(string name) {
+		gameName = name;
 	}
 }
